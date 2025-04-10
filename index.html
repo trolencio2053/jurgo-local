@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido a mi Página</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-image: url('goku.jpg'); /* Imagen de fondo */
+            background-size: cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.5); /* Fondo transparente para el contenedor */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        #playButton, #backButton {
+            background-color: #ff6600;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenido a mi página</h1>
+        <button id="playButton" onclick="startGame()">Jugar</button>
+        <button id="backButton" style="display: none;" onclick="goBack()">Volver a la página principal</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Función para comenzar el juego
+        function startGame() {
+            const userGuess = prompt("Adivina el número entre 1 y 100");
+
+            // Si el jugador ingresa el número 500, mostrar el mensaje especial
+            if (userGuess == 500) {
+                document.getElementById("result").innerText = "¡Oh! Este número amiguito está haciendo trampa. Te estoy observando... Jaja, era mentira. ¡Intenta de nuevo!";
+                return; // Termina la ejecución si el jugador ingresa 500
+            }
+
+            // Si el jugador ingresa el número 849, mostrar el mensaje especial
+            if (userGuess == 849) {
+                document.getElementById("result").innerText = "¡Felicidades! Has desbloqueado el número secreto del admin!";
+                document.getElementById("backButton").style.display = "block"; // Mostrar el botón para volver al inicio
+                return; // Termina la ejecución si el jugador ingresa 849
+            }
+
+            // Lógica del juego: verificar si el número es correcto o incorrecto
+            const randomNumber = Math.floor(Math.random() * 100) + 1;
+            if (userGuess < randomNumber) {
+                document.getElementById("result").innerText = "Demasiado bajo. ¡Intenta de nuevo!";
+            } else if (userGuess > randomNumber) {
+                document.getElementById("result").innerText = "Demasiado alto. ¡Intenta de nuevo!";
+            } else {
+                document.getElementById("result").innerText = `¡Correcto! El número era ${randomNumber}.`;
+                document.getElementById("backButton").style.display = "block"; // Mostrar el botón para volver al inicio
+            }
+        }
+
+        // Función para volver a la página principal
+        function goBack() {
+            document.getElementById("result").innerText = ""; // Limpiar el mensaje
+            document.getElementById("backButton").style.display = "none"; // Ocultar el botón de volver
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
